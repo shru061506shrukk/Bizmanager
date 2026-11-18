@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BizManager</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <header class="top">
+    <h1>BizManager</h1>
+    <div class="langbar">
+      <button data-lang="en" onclick="setLang('en')">English</button>
+      <button data-lang="kn" onclick="setLang('kn')">ಕನ್ನಡ</button>
+      <button data-lang="hi" onclick="setLang('hi')">हिन्दी</button>
+    </div>
+  </header>
+  <p id="msg"></p>
+
+  <!-- STEP 1: create the account -->
+  <section id="signup">
+    <p class="step" data-i18n="step1"></p>
+    <h2 data-i18n="create_account_title"></h2>
+    <label for="s_email" data-i18n="email"></label>
+    <input id="s_email" type="email" autocomplete="email" placeholder="you@example.com">
+    <label for="s_pass" data-i18n="password"></label>
+    <input id="s_pass" type="password" autocomplete="new-password" data-i18n-ph="ph_pass_min">
+    <label for="s_pass2" data-i18n="confirm_password"></label>
+    <input id="s_pass2" type="password" autocomplete="new-password" data-i18n-ph="ph_pass_again">
+    <label><input type="checkbox" onchange="togglePw(this.checked)"> <span data-i18n="show_password"></span></label>
+    <button onclick="createAccount()" data-i18n="create_btn"></button>
+    <p><span data-i18n="have_account"></span> <a href="#" data-i18n="login" onclick="show('login'); say(''); return false;"></a></p>
+  </section>
+
+  <!-- STEP 2: tell us about the business -->
+  <section id="setup">
+    <p class="step" data-i18n="step2"></p>
+    <h2 data-i18n="tell_us"></h2>
+    <label for="r_owner" data-i18n="owner_name"></label>
+    <input id="r_owner" data-i18n-ph="ph_owner">
+    <label for="r_shop" data-i18n="business_name"></label>
+    <input id="r_shop" data-i18n-ph="ph_shop">
+    <label for="r_type" data-i18n="business_type"></label>
+    <select id="r_type"></select>
+    <label for="r_phone" data-i18n="phone_opt"></label>
+    <input id="r_phone" type="tel" data-i18n-ph="ph_phone">
+    <button onclick="finishSetup()" data-i18n="finish"></button>
+  </section>
+
+  <section id="login">
+    <h2 data-i18n="welcome_back"></h2>
+    <label for="l_email" data-i18n="email"></label>
+    <input id="l_email" type="email" autocomplete="email">
+    <label for="l_pass" data-i18n="password"></label>
+    <input id="l_pass" type="password" autocomplete="current-password">
+    <button onclick="login()" data-i18n="login"></button>
+    <p><span data-i18n="new_here"></span> <a href="#" data-i18n="create_link" onclick="show('signup'); say(''); return false;"></a></p>
+  </section>
+
+  <!-- APP TABS -->
+  <section id="home"><div id="dash"></div></section>
+
+  <section id="manage">
+    <h2 data-i18n="nav_manage"></h2>
+    <div class="soon" data-i18n="soon_manage"></div>
+  </section>
+
+  <section id="assistant">
+    <h2 data-i18n="nav_assistant"></h2>
+    <div class="soon" data-i18n="soon_assistant"></div>
+  </section>
+
+  <nav id="tabs">
+    <button data-tab="home" onclick="openTab('home')"><span class="ic">🏠</span><span data-i18n="nav_home"></span></button>
+    <button data-tab="manage" onclick="openTab('manage')"><span class="ic">📋</span><span data-i18n="nav_manage"></span></button>
+    <button data-tab="assistant" onclick="openTab('assistant')"><span class="ic">🎤</span><span data-i18n="nav_assistant"></span></button>
+  </nav>
+
+  <script src="i18n.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
